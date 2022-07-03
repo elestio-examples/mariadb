@@ -15,8 +15,12 @@ ports:
     targetIP: "172.17.0.1"
     targetPort: "3306"
     public: true
+    path: "/"
+    isAuth: false
+    login: ""
+    password: ""
 environments:
-- key: "SOFTWARE_VERSION_TAG"
+  - key: "SOFTWARE_VERSION_TAG"
     value: "latest"
   - key: "SOFTWARE_PASSWORD"
     value: "random_password"
