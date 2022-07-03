@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb:${SOFTWARE_VERSION_TAG}
+    restart: always
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --gtid-strict-mode=1
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
+    ports:
+      - 172.17.0.1:3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    links:
+      - mariadb:mariadb
+    ports:
+      - "172.17.0.1:24581:80"
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: ${SOFTWARE_PASSWORD}
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
+    depends_on:
+      - mariadb
