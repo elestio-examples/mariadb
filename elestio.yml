@@ -21,7 +21,7 @@ ports:
     password: ""
 environments:
   - key: "SOFTWARE_VERSION_TAG"
-    value: "latest"
+    value: "10.9.6"
   - key: "SOFTWARE_PASSWORD"
     value: "random_password"
 config:
