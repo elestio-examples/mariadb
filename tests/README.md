@@ -61,7 +61,7 @@ Here are some example snippets to help you get started creating a container.
                   MYSQL_USER: mydb
                   MYSQL_PASSWORD: root@123
                 ports:
-                  - "172.17.0.1:3308:3306"
+                  - "172.17.0.1:3306:3306"
                 restart: on-failure
               pma:
                 image: phpmyadmin/phpmyadmin
