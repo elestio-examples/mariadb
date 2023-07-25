@@ -51,35 +51,37 @@ Here are some example snippets to help you get started creating a container.
 
             version: '3.3'
             services:
-            mariadb:
+              mariadb:
                 image: elestio4test/mariadb:${SOFTWARE_VERSION_TAG}
-                restart: always
-                command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --gtid-strict-mode=1
-                environment:
-                MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
-                ports:
-                - 172.17.0.1:3306:3306
                 volumes:
-                - ./data:/var/lib/mysql
-
-            pma:
+                 - data:/var/lib/mysql
+                environment:
+                  MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
+                  MYSQL_DATABASE: mydb
+                  MYSQL_USER: mydb
+                  MYSQL_PASSWORD: root@123
+                ports:
+                  - "172.17.0.1:3308:3306"
+                restart: on-failure
+              pma:
                 image: phpmyadmin/phpmyadmin
                 restart: always
                 links:
-                - mariadb:mariadb
+                  - mariadb:mariadb
                 ports:
-                - "172.17.0.1:24581:80"
+                  - "172.17.0.1:24581:80"
                 environment:
-                PMA_HOST: mariadb
-                PMA_PORT: 3306
-                PMA_USER: root
-                PMA_PASSWORD: ${SOFTWARE_PASSWORD}
-                UPLOAD_LIMIT: 500M
-                MYSQL_USERNAME: root
-                MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
+                  PMA_HOST: mariadb
+                  PMA_PORT: 3306
+                  PMA_USER: root
+                  PMA_PASSWORD: ${SOFTWARE_PASSWORD}
+                  UPLOAD_LIMIT: 500M
+                  MYSQL_USERNAME: root
+                  MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
                 depends_on:
-                - mariadb
-
+                  - mariadb
+            volumes:
+              data:
 ### Environment variables
 
 |       Variable       | Value (example) |
