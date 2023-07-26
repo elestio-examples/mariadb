@@ -12,7 +12,7 @@ A better community platform for the modern web.
 
 [MariaDB](https://mariadb.org/)MariaDB is a Opensource relational Database.
 
-<img src="https://github.com/elestio-examples/mariadb/raw/main/screenshot.png" alt="mariadb" width="800">
+<img src="https://github.com/elestio-examples/mariadb/raw/master/screenshot.png" alt="mariadb" width="800">
 
 Deploy a <a target="_blank" href="https://elest.io/open-source/mariadb">fully managed MariaDB</a> on <a target="_blank" href="https://elest.io/">elest.io</a> The open source relational database.
 
