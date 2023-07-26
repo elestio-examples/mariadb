@@ -16,7 +16,7 @@ A better community platform for the modern web.
 
 Deploy a <a target="_blank" href="https://elest.io/open-source/mariadb">fully managed MariaDB</a> on <a target="_blank" href="https://elest.io/">elest.io</a> The open source relational database.
 
-[![deploy](https://github.com/elestio-examples/mariadb/raw/main/deploy-on-elestio.png)](https://dash.elest.io/deploy?source=cicd&social=dockerCompose&url=https://github.com/elestio-examples/mariadb)
+[![deploy](https://github.com/elestio-examples/mariadb/raw/master/deploy-on-elestio.png)](https://dash.elest.io/deploy?source=cicd&social=dockerCompose&url=https://github.com/elestio-examples/mariadb)
 
 # Why use Elestio images?
 
