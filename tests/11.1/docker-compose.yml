@@ -1,0 +1,33 @@
+version: "3.3"
+services:
+  mariadb:
+    image: elestio4test/mariadb:${SOFTWARE_VERSION_TAG}
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "172.17.0.1:3306:3306"
+    restart: on-failure
+  pma:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    links:
+      - mariadb:mariadb
+    ports:
+      - "172.17.0.1:24581:80"
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      PMA_PORT: ${PMA_PORT}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${SOFTWARE_PASSWORD}
+      UPLOAD_LIMIT: ${UPLOAD_LIMIT}
+      MYSQL_USERNAME: ${MYSQL_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
+    depends_on:
+      - mariadb
+volumes:
+  data:

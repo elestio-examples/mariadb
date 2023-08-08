@@ -38,7 +38,6 @@ Copy the .env file from tests folder to the project directory
 
 Edit the .env file with your own values.
 
-
 Run the project with the following command
 
     docker-compose up -d
@@ -49,17 +48,17 @@ You can access the Web UI at: `http://your-domain:3306`
 
 Here are some example snippets to help you get started creating a container.
 
-            version: '3.3'
+            version: "3.3"
             services:
               mariadb:
                 image: elestio4test/mariadb:${SOFTWARE_VERSION_TAG}
                 volumes:
-                 - data:/var/lib/mysql
+                  - data:/var/lib/mysql
                 environment:
                   MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
-                  MYSQL_DATABASE: mydb
-                  MYSQL_USER: mydb
-                  MYSQL_PASSWORD: root@123
+                  MYSQL_DATABASE: ${MYSQL_DATABASE}
+                  MYSQL_USER: ${MYSQL_USER}
+                  MYSQL_PASSWORD: ${MYSQL_PASSWORD}
                 ports:
                   - "172.17.0.1:3306:3306"
                 restart: on-failure
@@ -71,25 +70,33 @@ Here are some example snippets to help you get started creating a container.
                 ports:
                   - "172.17.0.1:24581:80"
                 environment:
-                  PMA_HOST: mariadb
-                  PMA_PORT: 3306
-                  PMA_USER: root
+                  PMA_HOST: ${PMA_HOST}
+                  PMA_PORT: ${PMA_PORT}
+                  PMA_USER: ${PMA_USER}
                   PMA_PASSWORD: ${SOFTWARE_PASSWORD}
-                  UPLOAD_LIMIT: 500M
-                  MYSQL_USERNAME: root
+                  UPLOAD_LIMIT: ${UPLOAD_LIMIT}
+                  MYSQL_USERNAME: ${MYSQL_USERNAME}
                   MYSQL_ROOT_PASSWORD: ${SOFTWARE_PASSWORD}
                 depends_on:
                   - mariadb
             volumes:
               data:
+
 ### Environment variables
 
-|       Variable       | Value (example) |
-| :------------------: | :-------------: |
-| SOFTWARE_VERSION_TAG | 11.0            |
-| SOFTWARE_PASSWORD    | your example    |
-
-
+|       Variable       |     Value (example)     |
+| :------------------: | :---------------------: |
+| SOFTWARE_VERSION_TAG |         latest          |
+|  SOFTWARE_PASSWORD   |      your example       |
+|       TEST_URL       | http://yourdomain:24581 |
+|    MYSQL_DATABASE    |      your-db-name       |
+|      MYSQL_USER      |      your-db-user       |
+|    MYSQL_PASSWORD    |      your-db-pass       |
+|       PMA_HOST       |         mariadb         |
+|       PMA_PORT       |          3306           |
+|       PMA_USER       |          root           |
+|     UPLOAD_LIMIT     |          500M           |
+|    MYSQL_USERNAME    |     your-mysql-name     |
 
 # Maintenance
 
