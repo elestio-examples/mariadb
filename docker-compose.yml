@@ -1,7 +1,7 @@
-version: '3'
+version: "3"
 services:
   mariadb:
-    image: mariadb:${SOFTWARE_VERSION_TAG}
+    image: elestio/mariadb:${SOFTWARE_VERSION_TAG}
     restart: always
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --gtid-strict-mode=1
     environment:
@@ -12,7 +12,7 @@ services:
       - ./data:/var/lib/mysql
 
   pma:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin
     restart: always
     links:
       - mariadb:mariadb

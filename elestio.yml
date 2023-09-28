@@ -21,7 +21,7 @@ ports:
     password: ""
 environments:
   - key: "SOFTWARE_VERSION_TAG"
-    value: "10.9.6"
+    value: "10.9"
   - key: "SOFTWARE_PASSWORD"
     value: "random_password"
 config:
@@ -43,4 +43,3 @@ lifeCycleConfig:
 webUI:
   - url: "https://[CI_CD_DOMAIN]"
     label: "phpMyAdmin"
-    
